@@ -1,0 +1,60 @@
+{
+  "name": "chalk-cli",
+  "version": "0.0.0",
+  "description": "Terminal string styling done right. Much color.",
+  "license": "MIT",
+  "repository": "chalk/chalk-cli",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "maintainers": [
+    "Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)",
+    "Joshua Appelman <jappelman@xebia.com> (jbnicolai.com)"
+  ],
+  "bin": {
+    "chalk": "cli.js"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "str",
+    "ansi",
+    "style",
+    "styles",
+    "tty",
+    "formatting",
+    "rgb",
+    "256",
+    "shell",
+    "xterm",
+    "log",
+    "logging",
+    "command-line",
+    "text"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "get-stdin": "^4.0.1",
+    "meow": "^3.3.0"
+  },
+  "devDependencies": {
+    "ava": "0.0.4"
+  }
+}
