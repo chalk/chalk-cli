@@ -3,6 +3,7 @@
 var getStdin = require('get-stdin');
 var meow = require('meow');
 var chalk = require('chalk');
+var dotProp = require('dot-prop');
 
 var cli = meow({
 	help: [
@@ -25,8 +26,8 @@ function init(data) {
 		}
 	});
 
-	var fn = new Function('chalk', 'text', 'return chalk.' + styles.join('.') + '(text)');
-	console.log(fn(chalk, data.replace(/\n$/, '')));
+	var fn = dotProp.get(chalk, styles.join('.'));
+	console.log(fn(data.replace(/\n$/, '')));
 }
 
 if (process.stdin.isTTY || cli.flags.stdin === false) {

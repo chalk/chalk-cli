@@ -52,6 +52,7 @@
   ],
   "dependencies": {
     "chalk": "^1.0.0",
+    "dot-prop": "^2.2.0",
     "get-stdin": "^4.0.1",
     "meow": "^3.3.0"
   },
