@@ -5,16 +5,14 @@ var meow = require('meow');
 var chalk = require('chalk');
 var dotProp = require('dot-prop');
 
-var cli = meow({
-	help: [
-		'Usage',
-		'  $ chalk <style> ... <string>',
-		'  $ echo <string> | chalk <style> ...',
-		'',
-		'Example',
-		'  $ chalk red bold \'Unicorns & Rainbows\''
-	]
-});
+var cli = meow([
+	'Usage',
+	'  $ chalk <style> ... <string>',
+	'  $ echo <string> | chalk <style> ...',
+	'',
+	'Example',
+	'  $ chalk red bold \'Unicorns & Rainbows\''
+]);
 
 var styles = cli.input;
 
@@ -43,6 +41,6 @@ if (process.stdin.isTTY || cli.flags.stdin === false) {
 		process.exit(1);
 	}
 
-	getStdin(init);
+	getStdin().then(init);
 }
 
