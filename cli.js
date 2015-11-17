@@ -12,7 +12,9 @@ var cli = meow([
 	'',
 	'Example',
 	'  $ chalk red bold \'Unicorns & Rainbows\''
-]);
+], {
+	string: ['_']
+});
 
 var styles = cli.input;
 

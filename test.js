@@ -22,3 +22,17 @@ test('stdin', function (t) {
 		t.assert(stdout.trim() === chalk.red.bold('unicorn'));
 	});
 });
+
+test('number', function (t) {
+	t.plan(2);
+
+	childProcess.exec('./cli.js red bold 123 --no-stdin', function (err, stdout) {
+		t.assert(!err, err);
+		t.assert(stdout.trim() === chalk.red.bold('123'));
+	});
+
+	childProcess.exec('./cli.js red bold 0x2A --no-stdin', function (err, stdout) {
+		t.assert(!err, err);
+		t.assert(stdout.trim() === chalk.red.bold('0x2A'));
+	});
+});
