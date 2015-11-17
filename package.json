@@ -18,10 +18,10 @@
     "chalk": "cli.js"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
-    "test": "xo && node test.js"
+    "test": "xo && ava"
   },
   "files": [
     "cli.js"
@@ -54,10 +54,14 @@
     "chalk": "^1.0.0",
     "dot-prop": "^2.2.0",
     "get-stdin": "^5.0.1",
-    "meow": "^3.3.0"
+    "meow": "^3.5.0"
   },
   "devDependencies": {
-    "ava": "0.0.4",
+    "ava": "*",
+    "pify": "^2.3.0",
     "xo": "*"
+  },
+  "xo": {
+    "esnext": true
   }
 }

@@ -1,38 +1,24 @@
-'use strict';
-var test = require('ava');
-var childProcess = require('child_process');
-var chalk = require('chalk');
+import childProcess from 'child_process';
+import test from 'ava';
+import chalk from 'chalk';
+import pify from 'pify';
+
+const exec = pify(childProcess.exec);
 
 process.env.FORCE_COLOR = true;
+chalk.enabled = true;
 
-test('main', function (t) {
-	t.plan(2);
-
-	childProcess.exec('./cli.js red bold unicorn --no-stdin', function (err, stdout) {
-		t.assert(!err, err);
-		t.assert(stdout.trim() === chalk.red.bold('unicorn'));
-	});
+test('main', async t => {
+	const stdout = await exec('./cli.js red bold unicorn --no-stdin');
+	t.is(stdout.trim(), chalk.red.bold('unicorn'));
 });
 
-test('stdin', function (t) {
-	t.plan(2);
-
-	childProcess.exec('echo unicorn | ./cli.js red bold', function (err, stdout) {
-		t.assert(!err, err);
-		t.assert(stdout.trim() === chalk.red.bold('unicorn'));
-	});
+test('stdin', async t => {
+	const stdout = await exec('echo unicorn | ./cli.js red bold');
+	t.is(stdout.trim(), chalk.red.bold('unicorn'));
 });
 
-test('number', function (t) {
-	t.plan(2);
-
-	childProcess.exec('./cli.js red bold 123 --no-stdin', function (err, stdout) {
-		t.assert(!err, err);
-		t.assert(stdout.trim() === chalk.red.bold('123'));
-	});
-
-	childProcess.exec('./cli.js red bold 0x2A --no-stdin', function (err, stdout) {
-		t.assert(!err, err);
-		t.assert(stdout.trim() === chalk.red.bold('0x2A'));
-	});
+test('number', async t => {
+	const stdout = await exec('./cli.js red bold 123 --no-stdin');
+	t.is(stdout.trim(), chalk.red.bold('123'));
 });

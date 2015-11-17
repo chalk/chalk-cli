@@ -25,7 +25,7 @@ $ chalk --help
     $ chalk red bold 'Unicorns & Rainbows'
 ```
 
-See [supported styles](https://github.com/chalk/chalk/blob/master/readme.md#styles).
+See [supported styles](https://github.com/chalk/chalk#styles).
 
 
 ## Related
