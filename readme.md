@@ -20,7 +20,7 @@ $ chalk --help
   Usage
     $ chalk <style> ... <string>
     $ echo <string> | chalk <style> ...
-	$ chalk -t/--template {<style> ... <string>}
+    $ chalk -t/--template {<style> ... <string>}
 
   Example
     $ chalk red bold 'Unicorns & Rainbows'
@@ -38,10 +38,10 @@ See [supported styles](https://github.com/chalk/chalk#styles).
 Examples:
 - `{red.bold unicorn}`
 - `{red.bold unicorns} are {blue FUN!!!}`
-- {red.bold unicorn {blue.underline dancing}}
-- {red red {!red normal}}
-- {red hey\} stil red} not red
-- {red hey\\} not red
+- `{red.bold unicorn {blue.underline dancing}}`
+- `{red red {!red normal}}`
+- `{red hey\} still red} not red`
+- `{red hey\\} not red`
 
 ## License
 
