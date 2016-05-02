@@ -1,7 +1,7 @@
 'use strict';
 const chalk = require('chalk');
 const dotProp = require('dot-prop');
-const _ = require('lodash');
+const without = require('array-without');
 
 function data(parent) {
 	return {
@@ -11,11 +11,44 @@ function data(parent) {
 	};
 }
 
+const zeroBound = n => n < 0 ? 0 : n;
+const lastIndex = a => zeroBound(a.length - 1);
+
+const last = a => a[lastIndex(a)];
+
+const takeWhileReverse = (array, predicate, start = -1) => {
+	if (start < 0) {
+		start = array.length + start;
+	}
+
+	const out = [];
+
+	for (let i = start; i >= 0 && i <= start; i--) {
+		if (predicate(array[i])) {
+			out.unshift(array[i]);
+		} else {
+			break;
+		}
+	}
+
+	return out;
+};
+
 /**
- * Checks if the character at position i in string is a control character accounting for escaping (and escaping of the
- * escape character).
+ * Checks if the character at position i in string is a normal character a.k.a a non control character.
  * */
-const isNonControl = (string, i) => (string[i - 1] === '\\' && string[i - 1] !== '\\') || !(string[i] === '{' || string[i] === '}');
+const isNormalCharacter = (string, i) => {
+	const char = string[i];
+	const backslash = '\\';
+
+	if (!(char === backslash || char === '{' || char === '}')) {
+		return true;
+	}
+
+	const n = i === 0 ? 0 : takeWhileReverse(string, x => x === '\\', zeroBound(i - 1)).length;
+
+	return n % 2 === 1;
+};
 
 const collectStyles = data => data ? collectStyles(data.parent).concat(data.styles) : ['reset'];
 
@@ -29,7 +62,7 @@ const sumStyles = data => {
 
 	for (const style of collectStyles(data)) {
 		if (negateRegex.test(style)) {
-			out = _.without(out, style.slice(1));
+			out = without(out, style.slice(1));
 		} else {
 			out.push(style);
 		}
@@ -37,11 +70,6 @@ const sumStyles = data => {
 
 	return out;
 };
-
-const zeroBound = n => n < 0 ? 0 : n;
-const lastIndex = a => zeroBound(a.length - 1);
-
-const last = a => a[lastIndex(a)];
 
 /**
  * Takes a string and parses it into a tree data objects which inherit styles from their parent.
@@ -63,7 +91,7 @@ function parse(string) {
 			} else {
 				current.styles[lastIndex(current.styles)] = (last(current.styles) || '') + char;
 			}
-		} else if (isNonControl(string, i)) {
+		} else if (isNormalCharacter(string, i)) {
 			const lastChunk = last(current.contents);
 
 			if (typeof lastChunk === 'string') {
@@ -79,6 +107,10 @@ function parse(string) {
 		} else if (char === '}') {
 			current = current.parent;
 		}
+	}
+
+	if (current !== root) {
+		throw new Error('Remember to close blocks!');
 	}
 
 	return root;

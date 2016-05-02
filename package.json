@@ -51,10 +51,10 @@
     "text"
   ],
   "dependencies": {
+    "array-without": "0.0.2",
     "chalk": "^1.0.0",
     "dot-prop": "^2.2.0",
     "get-stdin": "^5.0.1",
-    "lodash": "^4.11.1",
     "meow": "^3.5.0"
   },
   "devDependencies": {

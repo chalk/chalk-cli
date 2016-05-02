@@ -43,11 +43,11 @@ if (process.stdin.isTTY || cli.flags.stdin === false) {
 				console.log(template(cli.flags.t));
 			} catch (x) {
 				console.error('Something went wrong! Maybe review your syntax?\n');
-				console.error(x);
+				console.error(x.stack);
 				process.exit(1);
 			}
 		} else {
-			console.log('The -t option only takes 1 argument');
+			console.error('The -t option only takes 1 argument');
 			process.exit(1);
 		}
 	} else {
