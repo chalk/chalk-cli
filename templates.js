@@ -57,7 +57,7 @@ const collectStyles = data => data ? collectStyles(data.parent).concat(data.styl
  * which remove a style from the list if present.
  * */
 const sumStyles = data => {
-	const negateRegex = /^!.+/;
+	const negateRegex = /^~.+/;
 	let out = [];
 
 	for (const style of collectStyles(data)) {

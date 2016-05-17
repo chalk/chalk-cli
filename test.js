@@ -39,7 +39,7 @@ test('template basic', async t => {
 });
 
 test('template negation', async t => {
-	await testTemplate(t, '{red red {!red normal}}',
+	await testTemplate(t, '{red red {~red normal}}',
 		chalk.reset.red('red ') + chalk.reset('normal'));
 });
 
