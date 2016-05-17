@@ -15,6 +15,7 @@ const cli = meow(`
 	Example
 	  $ chalk red bold 'Unicorns & Rainbows'
 	  $ chalk -t '{red.bold Unicorns & Rainbows}'
+	  $ chalk -t '{red.bold Dungeons and Dragons {!bold.blue (with added fairies)}'
 `, {
 	string: ['_'],
 	alias: {
@@ -37,17 +38,17 @@ function init(data) {
 }
 
 if (process.stdin.isTTY || cli.flags.stdin === false) {
-	if (cli.flags.t) {
+	if (cli.flags.template) {
 		if (cli.input.length === 0) {
 			try {
-				console.log(template(cli.flags.t));
-			} catch (x) {
+				console.log(template(cli.flags.template));
+			} catch (err) {
 				console.error('Something went wrong! Maybe review your syntax?\n');
-				console.error(x.stack);
+				console.error(err.stack);
 				process.exit(1);
 			}
 		} else {
-			console.error('The -t option only takes 1 argument');
+			console.error('The --template option only accepts 1 argument');
 			process.exit(1);
 		}
 	} else {

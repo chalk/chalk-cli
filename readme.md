@@ -35,6 +35,7 @@ See [supported styles](https://github.com/chalk/chalk#styles).
 - [chalk](https://github.com/chalk/chalk) - API for this module
 
 ## Template Syntax
+
 Examples:
 - `{red.bold unicorn}`
 - `{red.bold unicorns} are {blue FUN!!!}`

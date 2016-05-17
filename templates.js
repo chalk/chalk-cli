@@ -1,7 +1,7 @@
 'use strict';
 const chalk = require('chalk');
 const dotProp = require('dot-prop');
-const without = require('array-without');
+const exclude = require('arr-exclude');
 
 function data(parent) {
 	return {
@@ -62,7 +62,7 @@ const sumStyles = data => {
 
 	for (const style of collectStyles(data)) {
 		if (negateRegex.test(style)) {
-			out = without(out, style.slice(1));
+			out = exclude(out, style.slice(1));
 		} else {
 			out.push(style);
 		}
@@ -72,7 +72,7 @@ const sumStyles = data => {
 };
 
 /**
- * Takes a string and parses it into a tree data objects which inherit styles from their parent.
+ * Takes a string and parses it into a tree of data objects which inherit styles from their parent.
  * */
 function parse(string) {
 	const root = data(null);
