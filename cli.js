@@ -15,7 +15,7 @@ const cli = meow(`
 	Example
 	  $ chalk red bold 'Unicorns & Rainbows'
 	  $ chalk -t '{red.bold Unicorns & Rainbows}'
-	  $ chalk -t '{red.bold Dungeons and Dragons {!bold.blue (with added fairies)}'
+	  $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
 `, {
 	string: ['_'],
 	alias: {

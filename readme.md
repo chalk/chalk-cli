@@ -40,7 +40,7 @@ Examples:
 - `{red.bold unicorn}`
 - `{red.bold unicorns} are {blue FUN!!!}`
 - `{red.bold unicorn {blue.underline dancing}}`
-- `{red red {!red normal}}`
+- `{red red {~red normal}}`
 - `{red hey\} still red} not red`
 - `{red hey\\} not red`
 
