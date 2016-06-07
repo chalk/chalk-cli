@@ -51,6 +51,7 @@
     "text"
   ],
   "dependencies": {
+    "arr-exclude": "^1.0.0",
     "chalk": "^1.0.0",
     "dot-prop": "^2.2.0",
     "get-stdin": "^5.0.1",
