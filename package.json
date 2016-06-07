@@ -18,13 +18,14 @@
     "chalk": "cli.js"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "scripts": {
     "test": "xo && ava"
   },
   "files": [
-    "cli.js"
+    "cli.js",
+    "templates.js"
   ],
   "keywords": [
     "cli-app",
@@ -48,18 +49,20 @@
     "log",
     "logging",
     "command-line",
-    "text"
+    "text",
+    "template",
+    "tpl"
   ],
   "dependencies": {
     "arr-exclude": "^1.0.0",
     "chalk": "^1.0.0",
-    "dot-prop": "^2.2.0",
+    "dot-prop": "^3.0.0",
     "get-stdin": "^5.0.1",
     "meow": "^3.5.0"
   },
   "devDependencies": {
     "ava": "*",
-    "pify": "^2.3.0",
+    "execa": "^0.4.0",
     "xo": "*"
   },
   "xo": {

@@ -1,31 +1,28 @@
-import childProcess from 'child_process';
 import test from 'ava';
 import chalk from 'chalk';
-import pify from 'pify';
-
-const exec = pify(childProcess.exec);
+import execa from 'execa';
 
 process.env.FORCE_COLOR = true;
 chalk.enabled = true;
 
 test('main', async t => {
-	const stdout = await exec('./cli.js red bold unicorn --no-stdin');
-	t.is(stdout.trim(), chalk.red.bold('unicorn'));
+	const {stdout} = await execa('./cli.js', ['red', 'bold', 'unicorn', '--no-stdin']);
+	t.is(stdout, chalk.red.bold('unicorn'));
 });
 
 test('stdin', async t => {
-	const stdout = await exec('echo unicorn | ./cli.js red bold');
-	t.is(stdout.trim(), chalk.red.bold('unicorn'));
+	const {stdout} = await execa('./cli.js', ['red', 'bold'], {input: 'unicorn'});
+	t.is(stdout, chalk.red.bold('unicorn'));
 });
 
 test('number', async t => {
-	const stdout = await exec('./cli.js red bold 123 --no-stdin');
-	t.is(stdout.trim(), chalk.red.bold('123'));
+	const {stdout} = await execa('./cli.js', ['red', 'bold', '123', '--no-stdin']);
+	t.is(stdout, chalk.red.bold('123'));
 });
 
 const testTemplate = async (t, string, correct) => {
-	const stdout = await exec(`./cli.js -t '${string}' --no-stdin`);
-	t.is(stdout.trim(), correct);
+	const {stdout} = await execa('./cli.js', ['--template', string, '--no-stdin']);
+	t.is(stdout, correct);
 };
 
 test('template basic', async t => {

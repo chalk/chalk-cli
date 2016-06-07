@@ -122,6 +122,7 @@ function parse(string) {
  * */
 function flatten(data) {
 	let flat = [];
+
 	for (const content of data.contents) {
 		if (typeof content === 'string') {
 			flat.push({styles: sumStyles(data), content});

@@ -10,9 +10,11 @@ const cli = meow(`
 	Usage
 	  $ chalk <style> ... <string>
 	  $ echo <string> | chalk <style> ...
-	  $ chalk -t/--template {<style> ... <string>}
 
-	Example
+	Options
+	  --template, -t  Style template. The \`~\` character negates the style.
+
+	Examples
 	  $ chalk red bold 'Unicorns & Rainbows'
 	  $ chalk -t '{red.bold Unicorns & Rainbows}'
 	  $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'

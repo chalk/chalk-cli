@@ -20,23 +20,21 @@ $ chalk --help
   Usage
     $ chalk <style> ... <string>
     $ echo <string> | chalk <style> ...
-    $ chalk -t/--template {<style> ... <string>}
 
-  Example
+  Options
+    --template, -t  Style template. The `~` character negates the style.
+
+  Examples
     $ chalk red bold 'Unicorns & Rainbows'
     $ chalk -t '{red.bold Unicorns & Rainbows}'
+    $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
 ```
 
 See [supported styles](https://github.com/chalk/chalk#styles).
 
 
-## Related
+## Template syntax
 
-- [chalk](https://github.com/chalk/chalk) - API for this module
-
-## Template Syntax
-
-Examples:
 - `{red.bold unicorn}`
 - `{red.bold unicorns} are {blue FUN!!!}`
 - `{red.bold unicorn {blue.underline dancing}}`
@@ -44,6 +42,12 @@ Examples:
 - `{red hey\} still red} not red`
 - `{red hey\\} not red`
 
+
+## Related
+
+- [chalk](https://github.com/chalk/chalk) - API for this module
+
+
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)
