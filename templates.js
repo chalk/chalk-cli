@@ -125,7 +125,10 @@ function flatten(data) {
 
 	for (const content of data.contents) {
 		if (typeof content === 'string') {
-			flat.push({styles: sumStyles(data), content});
+			flat.push({
+				styles: sumStyles(data),
+				content
+			});
 		} else {
 			flat = flat.concat(flatten(content));
 		}
