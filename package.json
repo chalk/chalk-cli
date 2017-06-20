@@ -1,71 +1,63 @@
 {
-  "name": "chalk-cli",
-  "version": "3.0.0",
-  "description": "Terminal string styling done right. Much color.",
-  "license": "MIT",
-  "repository": "chalk/chalk-cli",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "maintainers": [
-    "Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)",
-    "Joshua Appelman <jappelman@xebia.com> (jbnicolai.com)",
-    "JD Ballard <i.am.qix@gmail.com> (github.com/qix-)"
-  ],
-  "bin": {
-    "chalk": "cli.js"
-  },
-  "engines": {
-    "node": ">=6"
-  },
-  "scripts": {
-    "test": "xo && ava"
-  },
-  "files": [
-    "cli.js",
-    "templates.js"
-  ],
-  "keywords": [
-    "cli-app",
-    "cli",
-    "color",
-    "colour",
-    "colors",
-    "terminal",
-    "console",
-    "string",
-    "str",
-    "ansi",
-    "style",
-    "styles",
-    "tty",
-    "formatting",
-    "rgb",
-    "256",
-    "shell",
-    "xterm",
-    "log",
-    "logging",
-    "command-line",
-    "text",
-    "template",
-    "tpl"
-  ],
-  "dependencies": {
-    "arr-exclude": "^1.0.0",
-    "chalk": "^1.0.0",
-    "dot-prop": "^3.0.0",
-    "get-stdin": "^5.0.1",
-    "meow": "^3.5.0"
-  },
-  "devDependencies": {
-    "ava": "*",
-    "execa": "^0.4.0",
-    "xo": "*"
-  },
-  "xo": {
-    "esnext": true
-  }
+	"name": "chalk-cli",
+	"version": "3.0.0",
+	"description": "Terminal string styling done right",
+	"license": "MIT",
+	"repository": "chalk/chalk-cli",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"bin": {
+		"chalk": "cli.js"
+	},
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"cli.js",
+		"templates.js"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		"color",
+		"colour",
+		"colors",
+		"terminal",
+		"console",
+		"string",
+		"str",
+		"ansi",
+		"style",
+		"styles",
+		"tty",
+		"formatting",
+		"rgb",
+		"256",
+		"shell",
+		"xterm",
+		"log",
+		"logging",
+		"command-line",
+		"text",
+		"template",
+		"tpl"
+	],
+	"dependencies": {
+		"arr-exclude": "^1.0.0",
+		"chalk": "^1.0.0",
+		"dot-prop": "^3.0.0",
+		"get-stdin": "^5.0.1",
+		"meow": "^3.7.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"execa": "^0.7.0",
+		"xo": "*"
+	}
 }

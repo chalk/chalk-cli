@@ -48,6 +48,12 @@ See [supported styles](https://github.com/chalk/chalk#styles).
 - [chalk](https://github.com/chalk/chalk) - API for this module
 
 
+## Maintainers
+
+- [Sindre Sorhus](https://github.com/sindresorhus)
+- [Josh Junon](https://github.com/qix-)
+
+
 ## License
 
-MIT © [Sindre Sorhus](https://sindresorhus.com)
+MIT
