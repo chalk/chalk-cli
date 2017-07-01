@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 'use strict';
-const getStdin = require('get-stdin');
-const meow = require('meow');
+const ansiStyles = require('ansi-styles');
 const chalk = require('chalk');
 const dotProp = require('dot-prop');
-const template = require('./templates');
+const getStdin = require('get-stdin');
+const meow = require('meow');
 
 const cli = meow(`
 	Usage
@@ -29,7 +29,7 @@ const styles = cli.input;
 
 function init(data) {
 	styles.forEach(x => {
-		if (Object.keys(chalk.styles).indexOf(x) === -1) {
+		if (Object.keys(ansiStyles).indexOf(x) === -1) {
 			console.error(`Invalid style: ${x}`);
 			process.exit(1);
 		}
@@ -43,7 +43,9 @@ if (process.stdin.isTTY || cli.flags.stdin === false) {
 	if (cli.flags.template) {
 		if (cli.input.length === 0) {
 			try {
-				console.log(template(cli.flags.template));
+				const tagArray = [cli.flags.template];
+				tagArray.raw = tagArray;
+				console.log(chalk(tagArray));
 			} catch (err) {
 				console.error('Something went wrong! Maybe review your syntax?\n');
 				console.error(err.stack);

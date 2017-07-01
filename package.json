@@ -19,8 +19,7 @@
 		"test": "xo && ava"
 	},
 	"files": [
-		"cli.js",
-		"templates.js"
+		"cli.js"
 	],
 	"keywords": [
 		"cli-app",
@@ -49,8 +48,9 @@
 		"tpl"
 	],
 	"dependencies": {
+		"ansi-styles": "^3.1.0",
 		"arr-exclude": "^1.0.0",
-		"chalk": "^1.0.0",
+		"chalk": "^2.0.0",
 		"dot-prop": "^3.0.0",
 		"get-stdin": "^5.0.1",
 		"meow": "^3.7.0"
