@@ -19,8 +19,7 @@
 		"test": "xo && ava"
 	},
 	"files": [
-		"cli.js",
-		"templates.js"
+		"cli.js"
 	],
 	"keywords": [
 		"cli-app",
