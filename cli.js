@@ -46,9 +46,9 @@ if (process.stdin.isTTY || cli.flags.stdin === false) {
 				const tagArray = [cli.flags.template];
 				tagArray.raw = tagArray;
 				console.log(chalk(tagArray));
-			} catch (err) {
+			} catch (error) {
 				console.error('Something went wrong! Maybe review your syntax?\n');
-				console.error(err.stack);
+				console.error(error.stack);
 				process.exit(1);
 			}
 		} else {
@@ -64,7 +64,7 @@ if (process.stdin.isTTY || cli.flags.stdin === false) {
 		init(styles.pop());
 	}
 } else {
-	if (styles.length < 1) {
+	if (styles.length === 0) {
 		console.error('Input required');
 		process.exit(1);
 	}
