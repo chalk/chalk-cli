@@ -8,8 +8,8 @@ const meow = require('meow');
 
 const cli = meow(`
 	Usage
-	  $ chalk <style> ... <string>
-	  $ echo <string> | chalk <style> ...
+	  $ chalk <style> … <string>
+	  $ echo <string> | chalk <style> …
 
 	Options
 	  --template, -t  Style template. The \`~\` character negates the style.
@@ -19,21 +19,23 @@ const cli = meow(`
 	  $ chalk -t '{red.bold Unicorns & Rainbows}'
 	  $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
 `, {
-	string: ['_'],
-	alias: {
-		t: 'template'
+	flags: {
+		template: {
+			type: 'string',
+			alias: 't'
+		}
 	}
 });
 
 const styles = cli.input;
 
 function init(data) {
-	styles.forEach(x => {
-		if (Object.keys(ansiStyles).indexOf(x) === -1) {
-			console.error(`Invalid style: ${x}`);
+	for (const style of styles) {
+		if (!Object.keys(ansiStyles).includes(style)) {
+			console.error(`Invalid style: ${style}`);
 			process.exit(1);
 		}
-	});
+	}
 
 	const fn = dotProp.get(chalk, styles.join('.'));
 	console.log(fn(data.replace(/\n$/, '')));
