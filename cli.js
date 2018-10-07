@@ -12,12 +12,12 @@ const cli = meow(`
 	  $ echo <string> | chalk <style> ...
 
 	Options
-		--template, -t  Style template. The \`~\` character negates the style.
+	  --template, -t  Style template. The \`~\` character negates the style.
 
 	Examples
 	  $ chalk red bold 'Unicorns & Rainbows'
 	  $ chalk -t '{red.bold Unicorns & Rainbows}'
-		$ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
+	  $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
 `, {
 	string: ['_'],
 	alias: {

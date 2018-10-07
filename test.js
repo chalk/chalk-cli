@@ -24,13 +24,13 @@ test('number', macro, {args: ['red', 'bold', '123', '--no-stdin']},
 test('template', templateMacro, '{red.bold unicorn}',
 	chalk.red.bold('unicorn'));
 test('template strikethrough', templateMacro, '{red.bold unicorns} are {blue.strikethrough FUN!!!}',
-	chalk.red.bold('unicorns') + chalk(' are ') + chalk.blue.strikethrough('FUN!!!'));
+	chalk.red.bold('unicorns') + ' are ' + chalk.blue.strikethrough('FUN!!!'));
 test('template underline', templateMacro, '{red.bold unicorn {blue.underline dancing}}',
 	chalk.red.bold('unicorn ') + chalk.red.bold.blue.underline('dancing'));
 test('template negation', templateMacro, '{red red {~red normal}}',
-	chalk.red('red ') + chalk('normal'));
+	chalk.red('red ') + 'normal');
 
 test('template escaping #1', templateMacro, '{red hey\\} still red} not red',
-	chalk.red('hey} still red') + chalk(' not red'));
+	chalk.red('hey} still red') + ' not red');
 test('template escaping #2', templateMacro, '{red hey\\\\} not red',
-	chalk.red('hey\\') + chalk(' not red'));
+	chalk.red('hey\\') + ' not red');
