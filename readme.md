@@ -23,7 +23,7 @@ $ chalk --help
 
   Options
     --template, -t  Style template. The `~` character negates the style.
-    --demo Demo of all Chalk styles.
+    --demo          Demo of all Chalk styles.
 
   Examples
     $ chalk red bold 'Unicorns & Rainbows'
