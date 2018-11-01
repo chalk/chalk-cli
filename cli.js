@@ -6,7 +6,7 @@ const dotProp = require('dot-prop');
 const getStdin = require('get-stdin');
 const meow = require('meow');
 
-function demoFunction() {
+const printAllStyles = () => {
 	const styles = [
 		'bold',
 		'dim',
@@ -34,7 +34,7 @@ function demoFunction() {
 	];
 
 	console.log(styles.map(style => chalk[style](style)).join(' '));
-}
+};
 
 const cli = meow(`
 	Usage
@@ -77,7 +77,7 @@ function init(data) {
 
 if (process.stdin.isTTY || cli.flags.stdin === false) {
 	if (cli.flags.demo) {
-		demoFunction();
+		printAllStyles();
 	} else if (cli.flags.template) {
 		if (cli.input.length === 0) {
 			try {
