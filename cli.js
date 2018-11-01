@@ -6,6 +6,36 @@ const dotProp = require('dot-prop');
 const getStdin = require('get-stdin');
 const meow = require('meow');
 
+function demoFunction() {
+	const styles = [
+		'bold',
+		'dim',
+		'italic',
+		'underline',
+		'inverse',
+		'strikethrough',
+		'black',
+		'red',
+		'green',
+		'yellow',
+		'blue',
+		'magenta',
+		'cyan',
+		'white',
+		'gray',
+		'bgBlack',
+		'bgRed',
+		'bgGreen',
+		'bgYellow',
+		'bgBlue',
+		'bgMagenta',
+		'bgCyan',
+		'bgWhite'
+	];
+
+	console.log(styles.map(style => chalk[style](style)).join(' '));
+}
+
 const cli = meow(`
 	Usage
 	  $ chalk <style> … <string>
@@ -13,6 +43,7 @@ const cli = meow(`
 
 	Options
 	  --template, -t  Style template. The \`~\` character negates the style.
+	  --demo          Demo of all Chalk styles.
 
 	Examples
 	  $ chalk red bold 'Unicorns & Rainbows'
@@ -23,6 +54,9 @@ const cli = meow(`
 		template: {
 			type: 'string',
 			alias: 't'
+		},
+		demo: {
+			type: 'boolean'
 		}
 	}
 });
@@ -42,7 +76,9 @@ function init(data) {
 }
 
 if (process.stdin.isTTY || cli.flags.stdin === false) {
-	if (cli.flags.template) {
+	if (cli.flags.demo) {
+		demoFunction();
+	} else if (cli.flags.template) {
 		if (cli.input.length === 0) {
 			try {
 				const tagArray = [cli.flags.template];
