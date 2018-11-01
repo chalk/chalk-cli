@@ -56,8 +56,7 @@ const cli = meow(`
 			alias: 't'
 		},
 		demo: {
-			type: 'boolean',
-			alias: 'd'
+			type: 'boolean'
 		}
 	}
 });
