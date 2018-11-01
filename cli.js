@@ -7,7 +7,7 @@ const getStdin = require('get-stdin');
 const meow = require('meow');
 
 function demoFunction() {
-	const demoString = [
+	const styles = [
 		'bold',
 		'dim',
 		'italic',
@@ -32,7 +32,8 @@ function demoFunction() {
 		'bgCyan',
 		'bgWhite'
 	];
-	console.log(demoString.map(str => chalk[str](str)).join(' '));
+
+	console.log(styles.map(style => chalk[style](style)).join(' '));
 }
 
 const cli = meow(`
@@ -42,7 +43,7 @@ const cli = meow(`
 
 	Options
 	  --template, -t  Style template. The \`~\` character negates the style.
-	  --demo Demo of all Chalk styles.
+	  --demo          Demo of all Chalk styles.
 
 	Examples
 	  $ chalk red bold 'Unicorns & Rainbows'
