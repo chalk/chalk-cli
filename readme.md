@@ -12,6 +12,13 @@ $ npm install --global chalk-cli
 ```
 
 
+### Homebrew
+
+```
+$ brew install chalk-cli
+```
+
+
 ## Usage
 
 ```
