@@ -1,4 +1,4 @@
-# chalk-cli [![Build Status](https://travis-ci.org/chalk/chalk-cli.svg?branch=master)](https://travis-ci.org/chalk/chalk-cli)
+# chalk-cli
 
 > Terminal string styling done right
 
