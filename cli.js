@@ -38,11 +38,12 @@ const printAllStyles = () => {
 
 const cli = meow(`
 	Usage
-	  $ chalk <style> … <string>
+	  $ chalk [-n] <style> … <string>
 	  $ echo <string> | chalk <style> …
 
 	Options
 	  --template, -t  Style template. The \`~\` character negates the style.
+	  --bare, -n      Don't emit a newline (\\n) after the input.
 	  --demo          Demo of all Chalk styles.
 
 	Examples
@@ -54,6 +55,10 @@ const cli = meow(`
 		template: {
 			type: 'string',
 			alias: 't'
+		},
+		bare: {
+			type: 'boolean',
+			alias: 'n'
 		},
 		demo: {
 			type: 'boolean'
@@ -72,7 +77,10 @@ function init(data) {
 	}
 
 	const fn = dotProp.get(chalk, styles.join('.'));
-	console.log(fn(data.replace(/\n$/, '')));
+	process.stdout.write(fn(data.replace(/\n$/, '')));
+	if (!cli.flags.bare) {
+		process.stdout.write('\n');
+	}
 }
 
 if (process.stdin.isTTY || cli.flags.stdin === false) {
