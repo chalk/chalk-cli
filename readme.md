@@ -23,12 +23,14 @@ $ chalk --help
 
   Options
     --template, -t  Style template. The `~` character negates the style.
+    --stdin         Read input from stdin rather than from arguments.
     --demo          Demo of all Chalk styles.
 
   Examples
     $ chalk red bold 'Unicorns & Rainbows'
     $ chalk -t '{red.bold Unicorns & Rainbows}'
     $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
+    $ echo 'Unicorns from stdin' | chalk --stdin red bold
 ```
 
 See [supported styles](https://github.com/chalk/chalk#styles).
