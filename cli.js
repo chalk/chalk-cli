@@ -39,18 +39,23 @@ const printAllStyles = () => {
 const cli = meow(`
 	Usage
 	  $ chalk <style> … <string>
-	  $ echo <string> | chalk <style> …
+	  $ echo <string> | chalk --stdin <style> …
 
 	Options
 	  --template, -t  Style template. The \`~\` character negates the style.
 	  --demo          Demo of all Chalk styles.
+	  --stdin         Read input from stdin rather than from arguments.
 
 	Examples
 	  $ chalk red bold 'Unicorns & Rainbows'
 	  $ chalk -t '{red.bold Unicorns & Rainbows}'
 	  $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
+	  $ echo 'Unicorns from stdin' | chalk --stdin red bold
 `, {
 	flags: {
+		stdin: {
+			type: 'boolean'
+		},
 		template: {
 			type: 'string',
 			alias: 't'
@@ -75,7 +80,7 @@ function init(data) {
 	console.log(fn(data.replace(/\n$/, '')));
 }
 
-if (process.stdin.isTTY || cli.flags.stdin === false) {
+if (process.stdin.isTTY || cli.flags.stdin !== true) {
 	if (cli.flags.demo) {
 		printAllStyles();
 	} else if (cli.flags.template) {
