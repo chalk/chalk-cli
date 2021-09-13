@@ -12,8 +12,9 @@
 	"bin": {
 		"chalk": "cli.js"
 	},
+	"type": "module",
 	"engines": {
-		"node": ">=6"
+		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
 	},
 	"scripts": {
 		"test": "xo && FORCE_COLOR=1 ava"

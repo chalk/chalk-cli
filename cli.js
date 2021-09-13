@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-'use strict';
-const ansiStyles = require('ansi-styles');
-const chalk = require('chalk');
-const dotProp = require('dot-prop');
-const getStdin = require('get-stdin');
-const meow = require('meow');
+
+import ansiStyles from 'ansi-styles';
+import chalk from 'chalk';
+import dotProp from 'dot-prop';
+import getStdin from 'get-stdin';
+import meow from 'meow';
+import process from 'node:process';
 
 const printAllStyles = () => {
 	const styles = [
@@ -69,7 +70,8 @@ const cli = meow(`
 		demo: {
 			type: 'boolean'
 		}
-	}
+	},
+	importMeta: import.meta,
 });
 
 const styles = cli.input;
