@@ -16,6 +16,13 @@
 	"engines": {
 		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
 	},
+	"xo": {
+		"rules": {
+			"comma-dangle": ["warn", "only-multiline"],
+			"promise/prefer-await-to-then": "warn",
+			"arrow-body-style": "warn"
+		}
+	},
 	"scripts": {
 		"test": "xo && FORCE_COLOR=1 ava"
 	},

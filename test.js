@@ -2,7 +2,6 @@ import test from 'ava';
 import chalk from 'chalk';
 import execa from 'execa';
 
-process.env.FORCE_COLOR = true;
 chalk.enabled = true;
 
 const macro = async (t, {args, opts}, expected) => {
