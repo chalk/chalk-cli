@@ -50,6 +50,7 @@
 	],
 	"dependencies": {
 		"ansi-styles": "^6.1.0",
+		"backslash": "^0.2.0",
 		"chalk": "^4.1.2",
 		"dot-prop": "^6.0.1",
 		"get-stdin": "^9.0.0",

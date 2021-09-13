@@ -23,6 +23,7 @@ $ chalk --help
     --template, -t    Style template. The `~` character negates the style.
     --stdin           Read input from stdin rather than from arguments.
     --no-newline, -n  Don't emit a newline (`\n`) after the input.
+    --escapes, -e     Process backslash escapes such as \t (tab) and \b (backspace).
     --demo            Demo of all Chalk styles.
 
   Examples

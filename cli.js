@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import process from 'node:process';
 import ansiStyles from 'ansi-styles';
+import backslash from 'backslash';
 import chalk from 'chalk';
 import dotProp from 'dot-prop';
 import getStdin from 'get-stdin';
@@ -43,6 +44,7 @@ const cli = meow(`
 	  --template, -t    Style template. The \`~\` character negates the style.
 	  --stdin           Read input from stdin rather than from arguments.
 	  --no-newline, -n  Don't emit a newline (\`\\n\`) after the input.
+	  --escapes, -e     Process backslash escapes such as \\t (tab) and \\b (backspace).
 	  --demo            Demo of all Chalk styles.
 
 	Examples
@@ -72,6 +74,10 @@ const cli = meow(`
 		noNewline: {
 			type: 'boolean',
 			alias: 'n',
+		},
+		escapes: {
+			type: 'boolean',
+			alias: 'e',
 		},
 		demo: {
 			type: 'boolean',
@@ -109,7 +115,12 @@ function init(data) {
 	}
 
 	const fn = dotProp.get(chalk, styles.join('.'));
-	process.stdout.write(fn(data.replace(/\n$/, '')));
+	let transformedData = data.replace(/\n$/, '');
+	if (cli.flags.escapes) {
+		transformedData = backslash(transformedData);
+	}
+
+	process.stdout.write(fn(transformedData));
 
 	// The following is unfortunately a bit complex, because we're trying to
 	// support both `-n` and `--no-newline` flags and this is a little tricky

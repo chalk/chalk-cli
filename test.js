@@ -61,6 +61,13 @@ test('with --no-newline, output has NO trailing newline', macro,
 
 test('demo', snapshotMacro, {arguments: ['--demo']});
 
+test('backslash escapes - \\t', macro,
+	{arguments: ['red', 'bold', '\\tunicorn', '-e']},
+	chalk.red.bold('\tunicorn'));
+test('backslash escapes - \\b', macro,
+	{arguments: ['red', 'bold', 'unicork\\bn', '-e']},
+	chalk.red.bold('unicork\bn'));
+
 test('unknown flag',
 	async (t, {arguments: arguments_, options}, expectedRegex) => {
 		try {
