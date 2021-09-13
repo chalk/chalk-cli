@@ -52,6 +52,7 @@ const cli = meow(`
 	  $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
 	  $ echo 'Unicorns from stdin' | chalk --stdin red bold
 `, {
+	allowUnknownFlags: false,
 	flags: {
 		template: {
 			type: 'string',
