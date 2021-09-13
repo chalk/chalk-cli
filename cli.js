@@ -84,7 +84,7 @@ function init(data) {
 
 	const fn = dotProp.get(chalk, styles.join('.'));
 	process.stdout.write(fn(data.replace(/\n$/, '')));
-	if (!cli.flags.noNewline) {
+	if (!cli.flags.noNewline && cli.flags.newline !== false) {
 		process.stdout.write('\n');
 	}
 }
