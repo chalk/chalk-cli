@@ -16,7 +16,9 @@ const templateMacro = (t, input, expected) => {
 
 test('main', macro, {args: ['red', 'bold', 'unicorn', '--no-stdin']},
 	chalk.red.bold('unicorn'));
-test('stdin', macro, {args: ['red', 'bold'], opts: {input: 'unicorn'}},
+test('default to args; not stdin (#11)', macro, {args: ['red', 'bold', 'unicorn'], opts: {input: ''}},
+	chalk.red.bold('unicorn'));
+test('stdin', macro, {args: ['red', 'bold', '--stdin'], opts: {input: 'unicorn'}},
 	chalk.red.bold('unicorn'));
 test('number', macro, {args: ['red', 'bold', '123', '--no-stdin']},
 	chalk.red.bold('123'));

@@ -44,12 +44,14 @@ const cli = meow(`
 	Options
 	  --template, -t  Style template. The \`~\` character negates the style.
 	  --bare, -n      Don't emit a newline (\\n) after the input.
+	  --stdin         Read input from stdin rather than from arguments.
 	  --demo          Demo of all Chalk styles.
 
 	Examples
 	  $ chalk red bold 'Unicorns & Rainbows'
 	  $ chalk -t '{red.bold Unicorns & Rainbows}'
 	  $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
+	  $ echo 'Unicorns from stdin' | chalk --stdin red bold
 `, {
 	flags: {
 		template: {
@@ -59,6 +61,9 @@ const cli = meow(`
 		bare: {
 			type: 'boolean',
 			alias: 'n'
+		},
+		stdin: {
+			type: 'boolean'
 		},
 		demo: {
 			type: 'boolean'
@@ -83,7 +88,7 @@ function init(data) {
 	}
 }
 
-if (process.stdin.isTTY || cli.flags.stdin === false) {
+if (process.stdin.isTTY || !cli.flags.stdin) {
 	if (cli.flags.demo) {
 		printAllStyles();
 	} else if (cli.flags.template) {
