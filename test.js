@@ -43,3 +43,6 @@ test('without -n, output has trailing newline', macro,
 test('with -n, output has NO trailing newline', macro,
 	{args: ['-n', 'red', 'bold', 'unicorn'], opts: {stripEof: false}},
 	chalk.red.bold('unicorn') /* No trailing newline */);
+test('with --no-newline, output has NO trailing newline', macro,
+	{args: ['--no-newline', 'red', 'bold', 'unicorn'], opts: {stripEof: false}},
+	chalk.red.bold('unicorn') /* No trailing newline */);
