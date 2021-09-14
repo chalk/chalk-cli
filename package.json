@@ -3,7 +3,7 @@
 	"version": "4.1.0",
 	"description": "Terminal string styling done right",
 	"license": "MIT",
-	"repository": "chalk/chalk-cli",
+	"repository": "github:chalk/chalk-cli",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
