@@ -37,21 +37,31 @@ const printAllStyles = () => {
 };
 
 const cli = meow(`
-	Usage
-	  $ chalk <style> … <string>
-	  $ echo <string> | chalk --stdin <style> …
+	${chalk.greenBright.inverse(' Usage ')}
 
-	Options
-	  --template, -t    Style template. The \`~\` character negates the style.
-	  --stdin           Read input from stdin rather than from arguments.
-	  --no-newline, -n  Don't emit a newline (\`\\n\`) after the input.
-	  --demo            Demo of all Chalk styles.
+	  $ ${chalk.green('chalk')} ${chalk.yellow('[options…]')} ${chalk.cyan('<style> … <string>')}
+	  $ echo ${chalk.cyan('<string>')} | ${chalk.green('chalk')} ${chalk.yellow('--stdin [options…]')} ${chalk.cyan('<style> …')}
 
-	Examples
+	${chalk.yellowBright.inverse(' Options ')}
+
+	  ${chalk.yellow('--template, -t')}    Style template. The \`~\` character negates the style.
+	  ${chalk.yellow('--stdin')}           Read input from stdin rather than from arguments.
+	  ${chalk.yellow('--no-newline, -n')}  Don't emit a newline (\`\\n\`) after the input.
+	  ${chalk.yellow('--demo')}            Demo of all Chalk styles.
+
+	${chalk.redBright.inverse(' Examples ')}
+
 	  $ chalk red bold 'Unicorns & Rainbows'
+	  ${chalk.red.bold('Unicorns & Rainbows')}
+
 	  $ chalk -t '{red.bold Unicorns & Rainbows}'
+	  ${chalk.red.bold('Unicorns & Rainbows')}
+
 	  $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
+	  ${chalk`{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}`}
+
 	  $ echo 'Unicorns from stdin' | chalk --stdin red bold
+	  ${chalk.red.bold('Unicorns from stdin')}
 `, {
 	importMeta: import.meta,
 	// TODO: Disabled until https://github.com/sindresorhus/meow/issues/197 is fixed.
