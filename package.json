@@ -16,7 +16,7 @@
 		"node": ">=6"
 	},
 	"scripts": {
-		"test": "xo && ava"
+		"test": "xo && FORCE_COLOR=1 ava"
 	},
 	"files": [
 		"cli.js"
