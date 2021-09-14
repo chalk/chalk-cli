@@ -139,8 +139,7 @@ async function processDataFromStdin() {
 		process.exit(1);
 	}
 
-	const dataFromStdin = await getStdin();
-	init(dataFromStdin);
+	init(await getStdin());
 }
 
 if (process.stdin.isTTY || !cli.flags.stdin) {
