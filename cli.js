@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-'use strict';
-const ansiStyles = require('ansi-styles');
-const chalk = require('chalk');
-const dotProp = require('dot-prop');
-const getStdin = require('get-stdin');
-const meow = require('meow');
+
+import ansiStyles from 'ansi-styles';
+import chalk from 'chalk';
+import dotProp from 'dot-prop';
+import getStdin from 'get-stdin';
+import meow from 'meow';
+import process from 'node:process';
 
 const printAllStyles = () => {
 	const styles = [
@@ -69,7 +70,8 @@ const cli = meow(`
 		demo: {
 			type: 'boolean'
 		}
-	}
+	},
+	importMeta: import.meta,
 });
 
 const styles = cli.input;
@@ -103,7 +105,7 @@ function init(data) {
 	}
 }
 
-if (process.stdin.isTTY || !cli.flags.stdin) {
+function processDataFromArgs() {
 	if (cli.flags.demo) {
 		printAllStyles();
 	} else if (cli.flags.template) {
@@ -129,11 +131,19 @@ if (process.stdin.isTTY || !cli.flags.stdin) {
 
 		init(styles.pop());
 	}
-} else {
+}
+
+async function processDataFromStdin() {
 	if (styles.length === 0) {
 		console.error('Input required');
 		process.exit(1);
 	}
 
-	getStdin().then(init);
+	init(await getStdin());
+}
+
+if (process.stdin.isTTY || !cli.flags.stdin) {
+	processDataFromArgs();
+} else {
+	processDataFromStdin();
 }

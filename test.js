@@ -2,7 +2,6 @@ import test from 'ava';
 import chalk from 'chalk';
 import execa from 'execa';
 
-process.env.FORCE_COLOR = true;
 chalk.enabled = true;
 
 const macro = async (t, {args, opts}, expected) => {
@@ -10,9 +9,8 @@ const macro = async (t, {args, opts}, expected) => {
 	t.is(stdout, expected);
 };
 
-const templateMacro = (t, input, expected) => {
-	return macro(t, {args: ['--template', input, '--no-stdin']}, expected);
-};
+const templateMacro = (t, input, expected) =>
+	macro(t, {args: ['--template', input, '--no-stdin']}, expected);
 
 test('main', macro, {args: ['red', 'bold', 'unicorn', '--no-stdin']},
 	chalk.red.bold('unicorn'));

@@ -3,17 +3,25 @@
 	"version": "4.1.0",
 	"description": "Terminal string styling done right",
 	"license": "MIT",
-	"repository": "chalk/chalk-cli",
+	"repository": "github:chalk/chalk-cli",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
 	"bin": {
 		"chalk": "cli.js"
 	},
+	"type": "module",
 	"engines": {
-		"node": ">=6"
+		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+	},
+	"xo": {
+		"rules": {
+			"comma-dangle": ["error", "only-multiline"],
+			"promise/prefer-await-to-then": "error",
+			"arrow-body-style": "error"
+		}
 	},
 	"scripts": {
 		"test": "xo && FORCE_COLOR=1 ava"
@@ -57,6 +65,6 @@
 	"devDependencies": {
 		"ava": "^0.25.0",
 		"execa": "^1.0.0",
-		"xo": "^0.23.0"
+		"xo": "^0.44.0"
 	}
 }
