@@ -105,42 +105,46 @@ function init(data) {
 	}
 }
 
-async function main() {
-	if (process.stdin.isTTY || !cli.flags.stdin) {
-		if (cli.flags.demo) {
-			printAllStyles();
-		} else if (cli.flags.template) {
-			if (cli.input.length === 0) {
-				try {
-					const tagArray = [cli.flags.template];
-					tagArray.raw = tagArray;
-					console.log(chalk(tagArray));
-				} catch (error) {
-					console.error('Something went wrong! Maybe review your syntax?\n');
-					console.error(error.stack);
-					process.exit(1);
-				}
-			} else {
-				console.error('The --template option only accepts 1 argument');
+function processDataFromArgs() {
+	if (cli.flags.demo) {
+		printAllStyles();
+	} else if (cli.flags.template) {
+		if (cli.input.length === 0) {
+			try {
+				const tagArray = [cli.flags.template];
+				tagArray.raw = tagArray;
+				console.log(chalk(tagArray));
+			} catch (error) {
+				console.error('Something went wrong! Maybe review your syntax?\n');
+				console.error(error.stack);
 				process.exit(1);
 			}
 		} else {
-			if (styles.length < 2) {
-				console.error('Input required');
-				process.exit(1);
-			}
-
-			init(styles.pop());
+			console.error('The --template option only accepts 1 argument');
+			process.exit(1);
 		}
 	} else {
-		if (styles.length === 0) {
+		if (styles.length < 2) {
 			console.error('Input required');
 			process.exit(1);
 		}
 
-		const data = await getStdin();
-		init(data);
+		init(styles.pop());
 	}
 }
 
-main();
+async function processDataFromStdin() {
+	if (styles.length === 0) {
+		console.error('Input required');
+		process.exit(1);
+	}
+
+	const dataFromStdin = await getStdin();
+	init(dataFromStdin);
+}
+
+if (process.stdin.isTTY || !cli.flags.stdin) {
+	processDataFromArgs();
+} else {
+	processDataFromStdin();
+}
