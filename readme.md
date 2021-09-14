@@ -22,9 +22,10 @@ $ chalk --help
     $ echo <string> | chalk <style> ...
 
   Options
-    --template, -t  Style template. The `~` character negates the style.
-    --stdin         Read input from stdin rather than from arguments.
-    --demo          Demo of all Chalk styles.
+    --template, -t    Style template. The `~` character negates the style.
+    --stdin           Read input from stdin rather than from arguments.
+    --no-newline, -n  Don't emit a newline (`\n`) after the input.
+    --demo            Demo of all Chalk styles.
 
   Examples
     $ chalk red bold 'Unicorns & Rainbows'
