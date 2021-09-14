@@ -7,7 +7,7 @@ import getStdin from 'get-stdin';
 import meow from 'meow';
 
 const printAllStyles = () => {
-	const styles = [
+	const allStyles = [
 		'bold',
 		'dim',
 		'italic',
@@ -32,8 +32,22 @@ const printAllStyles = () => {
 		'bgCyan',
 		'bgWhite',
 	];
+	allStyles.sliceByValue = function (startValue, endValue) {
+		return this.slice(this.indexOf(startValue), this.indexOf(endValue) + 1);
+	};
 
-	console.log(styles.map(style => chalk[style](style)).join(' '));
+	function showStyles(styles) {
+		console.log(styles.map(style => chalk[style](style)).join(' '));
+	}
+
+	const textStyles = allStyles.sliceByValue('bold', 'strikethrough');
+	const colorStyles = allStyles.sliceByValue('black', 'gray');
+	const bgColorStyles = allStyles.sliceByValue('bgBlack', 'bgWhite');
+
+	console.log('Available styles:\n');
+	showStyles(textStyles);
+	showStyles(colorStyles);
+	showStyles(bgColorStyles);
 };
 
 const cli = meow(`
