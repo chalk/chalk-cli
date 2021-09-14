@@ -18,9 +18,9 @@
 	},
 	"xo": {
 		"rules": {
-			"comma-dangle": ["warn", "only-multiline"],
-			"promise/prefer-await-to-then": "warn",
-			"arrow-body-style": "warn"
+			"comma-dangle": ["error", "only-multiline"],
+			"promise/prefer-await-to-then": "error",
+			"arrow-body-style": "error"
 		}
 	},
 	"scripts": {
