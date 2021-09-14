@@ -14,6 +14,15 @@ const templateMacro = (t, input, expected) => {
 	return macro(t, {args: ['--template', input, '--no-stdin']}, expected);
 };
 
+test('help',
+	async (t, {args, opts}, expectedRegex) => {
+		const stdout = await execa.stdout('./cli.js', args, opts);
+		t.regex(stdout, expectedRegex);
+	},
+	{args: ['--help']},
+	/Terminal string styling done right/
+);
+
 test('main', macro, {args: ['red', 'bold', 'unicorn', '--no-stdin']},
 	chalk.red.bold('unicorn'));
 test('default to args; not stdin (#11)', macro, {args: ['red', 'bold', 'unicorn'], opts: {input: ''}},
