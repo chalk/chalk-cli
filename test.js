@@ -36,3 +36,10 @@ test('template escaping #1', templateMacro, '{red hey\\} still red} not red',
 	chalk.red('hey} still red') + ' not red');
 test('template escaping #2', templateMacro, '{red hey\\\\} not red',
 	chalk.red('hey\\') + ' not red');
+
+test('without -n, output has trailing newline', macro,
+	{args: ['red', 'bold', 'unicorn'], opts: {stripEof: false}},
+	chalk.red.bold('unicorn') + '\n');
+test('with -n, output has NO trailing newline', macro,
+	{args: ['-n', 'red', 'bold', 'unicorn'], opts: {stripEof: false}},
+	chalk.red.bold('unicorn') /* No trailing newline */);
