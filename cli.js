@@ -1,11 +1,10 @@
 #!/usr/bin/env node
-
+import process from 'node:process';
 import ansiStyles from 'ansi-styles';
 import chalk from 'chalk';
 import dotProp from 'dot-prop';
 import getStdin from 'get-stdin';
 import meow from 'meow';
-import process from 'node:process';
 
 const printAllStyles = () => {
 	const styles = [
@@ -31,7 +30,7 @@ const printAllStyles = () => {
 		'bgBlue',
 		'bgMagenta',
 		'bgCyan',
-		'bgWhite'
+		'bgWhite',
 	];
 
 	console.log(styles.map(style => chalk[style](style)).join(' '));
@@ -54,24 +53,25 @@ const cli = meow(`
 	  $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
 	  $ echo 'Unicorns from stdin' | chalk --stdin red bold
 `, {
-	allowUnknownFlags: false,
+	importMeta: import.meta,
+	// TODO: Disabled until https://github.com/sindresorhus/meow/issues/197 is fixed.
+	// allowUnknownFlags: false,
 	flags: {
 		template: {
 			type: 'string',
-			alias: 't'
+			alias: 't',
 		},
 		stdin: {
-			type: 'boolean'
+			type: 'boolean',
 		},
 		noNewline: {
 			type: 'boolean',
-			alias: 'n'
+			alias: 'n',
 		},
 		demo: {
-			type: 'boolean'
-		}
+			type: 'boolean',
+		},
 	},
-	importMeta: import.meta,
 });
 
 const styles = cli.input;

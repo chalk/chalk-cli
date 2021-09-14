@@ -4,13 +4,11 @@
 
 <img src="screenshot.png" width="631">
 
-
 ## Install
 
 ```
 $ npm install --global chalk-cli
 ```
-
 
 ## Usage
 
@@ -36,7 +34,6 @@ $ chalk --help
 
 See [supported styles](https://github.com/chalk/chalk#styles).
 
-
 ## Template syntax
 
 - `{red.bold unicorn}`
@@ -46,18 +43,11 @@ See [supported styles](https://github.com/chalk/chalk#styles).
 - `{red hey\} still red} not red`
 - `{red hey\\} not red`
 
-
 ## Related
 
 - [chalk](https://github.com/chalk/chalk) - API for this module
-
 
 ## Maintainers
 
 - [Sindre Sorhus](https://github.com/sindresorhus)
 - [Josh Junon](https://github.com/qix-)
-
-
-## License
-
-MIT

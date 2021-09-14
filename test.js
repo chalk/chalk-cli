@@ -2,10 +2,10 @@ import test from 'ava';
 import chalk from 'chalk';
 import execa from 'execa';
 
-chalk.enabled = true;
+chalk.level = 1;
 
 const macro = async (t, {args, opts}, expected) => {
-	const stdout = await execa.stdout('./cli.js', args, opts);
+	const {stdout} = await execa('./cli.js', args, opts);
 	t.is(stdout, expected);
 };
 
@@ -36,11 +36,11 @@ test('template escaping #2', templateMacro, '{red hey\\\\} not red',
 	chalk.red('hey\\') + ' not red');
 
 test('without -n, output has trailing newline', macro,
-	{args: ['red', 'bold', 'unicorn'], opts: {stripEof: false}},
+	{args: ['red', 'bold', 'unicorn'], opts: {stripFinalNewline: false}},
 	chalk.red.bold('unicorn') + '\n');
 test('with -n, output has NO trailing newline', macro,
-	{args: ['-n', 'red', 'bold', 'unicorn'], opts: {stripEof: false}},
+	{args: ['-n', 'red', 'bold', 'unicorn'], opts: {stripFinalNewline: false}},
 	chalk.red.bold('unicorn') /* No trailing newline */);
 test('with --no-newline, output has NO trailing newline', macro,
-	{args: ['--no-newline', 'red', 'bold', 'unicorn'], opts: {stripEof: false}},
+	{args: ['--no-newline', 'red', 'bold', 'unicorn'], opts: {stripFinalNewline: false}},
 	chalk.red.bold('unicorn') /* No trailing newline */);
