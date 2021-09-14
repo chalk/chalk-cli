@@ -9,9 +9,8 @@ const macro = async (t, {args, opts}, expected) => {
 	t.is(stdout, expected);
 };
 
-const templateMacro = (t, input, expected) => {
-	return macro(t, {args: ['--template', input, '--no-stdin']}, expected);
-};
+const templateMacro = (t, input, expected) =>
+	macro(t, {args: ['--template', input, '--no-stdin']}, expected);
 
 test('main', macro, {args: ['red', 'bold', 'unicorn', '--no-stdin']},
 	chalk.red.bold('unicorn'));
