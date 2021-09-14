@@ -93,7 +93,8 @@ const styles = cli.input;
 function init(data) {
 	for (const style of styles) {
 		if (!Object.keys(ansiStyles).includes(style)) {
-			console.error(`Invalid style: ${style}`);
+			console.error(chalk`{red Invalid style: {bold ${style}}}\n`);
+			printAllStyles();
 			process.exit(1);
 		}
 	}
