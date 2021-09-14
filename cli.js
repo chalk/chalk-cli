@@ -55,6 +55,9 @@ const cli = meow(`
 `, {
 	allowUnknownFlags: false,
 	flags: {
+		help: {
+			type: 'boolean'
+		},
 		template: {
 			type: 'string',
 			alias: 't'
