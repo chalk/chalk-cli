@@ -1,3 +1,7 @@
+// NodeJS imports
+import fs from 'node:fs';
+
+// 3rd party (npm dependencies) imports
 import test from 'ava';
 import chalk from 'chalk';
 import execa from 'execa';
@@ -53,3 +57,6 @@ test('with -n, output has NO trailing newline', macro,
 test('with --no-newline, output has NO trailing newline', macro,
 	{args: ['--no-newline', 'red', 'bold', 'unicorn'], opts: {stripFinalNewline: false}},
 	chalk.red.bold('unicorn') /* No trailing newline */);
+
+test('demo', macro, {args: ['--demo']},
+	fs.readFileSync('demo-output.txt', {encoding: 'utf-8'}).trimEnd());
