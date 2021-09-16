@@ -2,6 +2,10 @@
 
 > Terminal string styling done right
 
+[![npm dependents](https://badgen.net/npm/dependents/chalk-cli)](https://www.npmjs.com/package/chalk-cli?activeTab=dependents) [![Downloads](https://badgen.net/npm/dt/chalk-cli)](https://www.npmjs.com/package/chalk-cli)
+[![run on repl.it](https://repl.it/badge/github/chalk/chalk-cli)](https://repl.it/github/chalk/chalk-cli)
+[![Support Chalk on DEV](https://badge.devprotocol.xyz/0x44d871aebF0126Bf646753E2C976Aa7e68A66c15/descriptive)](https://stakes.social/0x44d871aebF0126Bf646753E2C976Aa7e68A66c15)
+
 <img src="screenshot.png" width="631">
 
 ## Install
