@@ -1,4 +1,4 @@
-# chalk-cli
+# chalk-cli [![Downloads](https://badgen.net/npm/dt/chalk-cli)](https://www.npmjs.com/package/chalk-cli) [![run on repl.it](https://repl.it/badge/github/chalk/chalk-cli)](https://repl.it/github/chalk/chalk-cli)
 
 > Terminal string styling done right
 
