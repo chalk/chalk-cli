@@ -1,2 +1,2 @@
 language = "nodejs"
-run = "node cli.js red bold 'Unicorns & Rainbows'"
+run = "node cli.js --help && node cli.js --demo"
