@@ -40,7 +40,7 @@ const cli = meow(`
 	${chalk.greenBright.inverse(' Usage ')}
 
 	  $ ${chalk.green('chalk')} ${chalk.yellow('[options…]')} ${chalk.cyan('<style> … <string>')}
-	  $ echo ${chalk.cyan('<string>')} | ${chalk.green('chalk')} ${chalk.yellow('--stdin [options…]')} ${chalk.cyan('<style> …')}
+	  $ ${chalk.green('echo')} ${chalk.cyan('<string>')} | ${chalk.green('chalk')} ${chalk.yellow('--stdin [options…]')} ${chalk.cyan('<style> …')}
 
 	${chalk.yellowBright.inverse(' Options ')}
 
