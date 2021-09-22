@@ -32,17 +32,17 @@ const printAllStyles = () => {
 		'bgCyan',
 		'bgWhite',
 	];
-	allStyles.sliceByValue = function (startValue, endValue) {
-		return this.slice(this.indexOf(startValue), this.indexOf(endValue) + 1);
+	function sliceByValue(arr, startValue, endValue) {
+		return arr.slice(arr.indexOf(startValue), arr.indexOf(endValue) + 1);
 	};
 
 	function showStyles(styles) {
 		console.log(styles.map(style => chalk[style](style)).join(' '));
 	}
 
-	const textStyles = allStyles.sliceByValue('bold', 'strikethrough');
-	const colorStyles = allStyles.sliceByValue('black', 'gray');
-	const bgColorStyles = allStyles.sliceByValue('bgBlack', 'bgWhite');
+	const textStyles = sliceByValue(allStyles, 'bold', 'strikethrough');
+	const colorStyles = sliceByValue(allStyles, 'black', 'gray');
+	const bgColorStyles = sliceByValue(allStyles, 'bgBlack', 'bgWhite');
 
 	console.log('Available styles:\n');
 	showStyles(textStyles);
