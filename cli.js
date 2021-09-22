@@ -7,31 +7,8 @@ import getStdin from 'get-stdin';
 import meow from 'meow';
 
 const printAllStyles = () => {
-	const allStyles = [
-		'bold',
-		'dim',
-		'italic',
-		'underline',
-		'inverse',
-		'strikethrough',
-		'black',
-		'red',
-		'green',
-		'yellow',
-		'blue',
-		'magenta',
-		'cyan',
-		'white',
-		'gray',
-		'bgBlack',
-		'bgRed',
-		'bgGreen',
-		'bgYellow',
-		'bgBlue',
-		'bgMagenta',
-		'bgCyan',
-		'bgWhite',
-	];
+	const allStyles = Object.keys(ansiStyles);
+
 	function sliceByValue(arr, startValue, endValue) {
 		return arr.slice(arr.indexOf(startValue), arr.indexOf(endValue) + 1);
 	};
@@ -41,13 +18,17 @@ const printAllStyles = () => {
 	}
 
 	const textStyles = sliceByValue(allStyles, 'bold', 'strikethrough');
-	const colorStyles = sliceByValue(allStyles, 'black', 'gray');
+	const colorStyles = sliceByValue(allStyles, 'black', 'gray').concat(['grey']);
+	const brightColorStyles = sliceByValue(allStyles, 'redBright', 'whiteBright');
 	const bgColorStyles = sliceByValue(allStyles, 'bgBlack', 'bgWhite');
+	const bgBrightColorStyles = sliceByValue(allStyles, 'bgBlackBright', 'bgWhiteBright');
 
 	console.log('Available styles:\n');
 	showStyles(textStyles);
 	showStyles(colorStyles);
+	showStyles(brightColorStyles);
 	showStyles(bgColorStyles);
+	showStyles(bgBrightColorStyles);
 };
 
 const cli = meow(`
