@@ -13,8 +13,16 @@ const printAllStyles = () => {
 		return arr.slice(arr.indexOf(startValue), arr.indexOf(endValue) + 1);
 	};
 
+	function styled(style, text) {
+		if (/^bg[^B]/.test(style)) {
+			text = chalk.black(text);
+		}
+		return chalk[style](text);
+	}
+
 	function showStyles(styles) {
-		console.log(styles.map(style => chalk[style](style)).join(' '));
+		const output = styles.map(style => styled(style, style)).join(' ');
+		console.log(output);
 	}
 
 	const textStyles = sliceByValue(allStyles, 'bold', 'strikethrough');
