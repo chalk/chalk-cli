@@ -7,29 +7,24 @@ import getStdin from 'get-stdin';
 import meow from 'meow';
 
 const printAllStyles = () => {
-	const allStyles = Object.keys(ansiStyles);
-
-	function sliceByValue(arr, startValue, endValue) {
-		return arr.slice(arr.indexOf(startValue), arr.indexOf(endValue) + 1);
-	};
+	const textStyles = ['bold', 'dim', 'italic', 'underline', 'strikethrough'];
+	const colorStyles = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray'];
+	const brightColorStyles = ['blackBright', 'redBright', 'greenBright', 'yellowBright', 'blueBright', 'magentaBright', 'cyanBright', 'whiteBright'];
+	const bgColorStyles = ['bgBlack', 'bgRed', 'bgGreen', 'bgYellow', 'bgBlue', 'bgMagenta', 'bgCyan', 'bgWhite', 'bgGray'];
+	const bgBrightColorStyles = ['bgBlackBright', 'bgRedBright', 'bgGreenBright', 'bgYellowBright', 'bgBlueBright', 'bgMagentaBright', 'bgCyanBright', 'bgWhiteBright'];
 
 	function styled(style, text) {
 		if (/^bg[^B]/.test(style)) {
 			text = chalk.black(text);
 		}
+
 		return chalk[style](text);
 	}
 
-	function showStyles(styles) {
-		const output = styles.map(style => styled(style, style)).join(' ');
+	function showStyles(stylesArray) {
+		const output = stylesArray.map(style => styled(style, style)).join(' ');
 		console.log(output);
 	}
-
-	const textStyles = sliceByValue(allStyles, 'bold', 'strikethrough');
-	const colorStyles = sliceByValue(allStyles, 'black', 'gray').concat(['grey']);
-	const brightColorStyles = sliceByValue(allStyles, 'redBright', 'whiteBright');
-	const bgColorStyles = sliceByValue(allStyles, 'bgBlack', 'bgWhite');
-	const bgBrightColorStyles = sliceByValue(allStyles, 'bgBlackBright', 'bgWhiteBright');
 
 	console.log('Available styles:\n');
 	showStyles(textStyles);
