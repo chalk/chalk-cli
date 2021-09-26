@@ -7,33 +7,31 @@ import getStdin from 'get-stdin';
 import meow from 'meow';
 
 const printAllStyles = () => {
-	const styles = [
-		'bold',
-		'dim',
-		'italic',
-		'underline',
-		'inverse',
-		'strikethrough',
-		'black',
-		'red',
-		'green',
-		'yellow',
-		'blue',
-		'magenta',
-		'cyan',
-		'white',
-		'gray',
-		'bgBlack',
-		'bgRed',
-		'bgGreen',
-		'bgYellow',
-		'bgBlue',
-		'bgMagenta',
-		'bgCyan',
-		'bgWhite',
-	];
+	const textStyles = ['bold', 'dim', 'italic', 'underline', 'strikethrough'];
+	const colorStyles = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray'];
+	const brightColorStyles = ['blackBright', 'redBright', 'greenBright', 'yellowBright', 'blueBright', 'magentaBright', 'cyanBright', 'whiteBright'];
+	const bgColorStyles = ['bgBlack', 'bgRed', 'bgGreen', 'bgYellow', 'bgBlue', 'bgMagenta', 'bgCyan', 'bgWhite', 'bgGray'];
+	const bgBrightColorStyles = ['bgBlackBright', 'bgRedBright', 'bgGreenBright', 'bgYellowBright', 'bgBlueBright', 'bgMagentaBright', 'bgCyanBright', 'bgWhiteBright'];
 
-	console.log(styles.map(style => chalk[style](style)).join(' '));
+	function styled(style, text) {
+		if (/^bg[^B]/.test(style)) {
+			text = chalk.black(text);
+		}
+
+		return chalk[style](text);
+	}
+
+	function showStyles(stylesArray) {
+		const output = stylesArray.map(style => styled(style, style)).join(' ');
+		console.log(output);
+	}
+
+	console.log('Available styles:\n');
+	showStyles(textStyles);
+	showStyles(colorStyles);
+	showStyles(brightColorStyles);
+	showStyles(bgColorStyles);
+	showStyles(bgBrightColorStyles);
 };
 
 const cli = meow(`
@@ -97,7 +95,8 @@ function handleTemplateFlag(template) {
 function init(data) {
 	for (const style of styles) {
 		if (!Object.keys(ansiStyles).includes(style)) {
-			console.error(`Invalid style: ${style}`);
+			console.error(chalk`{red Invalid style: {bold ${style}}}\n`);
+			printAllStyles();
 			process.exit(1);
 		}
 	}
