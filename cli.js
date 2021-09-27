@@ -55,8 +55,12 @@ const cli = meow(`
 	allowUnknownFlags: false,
 	flags: {
 		// TODO: Can be removed when https://github.com/sindresorhus/meow/issues/197 is fixed.
-		help: {type: 'boolean'},
-		version: {type: 'boolean'},
+		help: {
+			type: 'boolean',
+		},
+		version: {
+			type: 'boolean',
+		},
 
 		template: {
 			type: 'string',

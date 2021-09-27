@@ -4,35 +4,35 @@ import execa from 'execa';
 
 chalk.level = 1;
 
-const macro = async (t, {args, opts}, expected) => {
-	const {stdout} = await execa('./cli.js', args, opts);
+const macro = async (t, {arguments: arguments_, options}, expected) => {
+	const {stdout} = await execa('./cli.js', arguments_, options);
 	t.is(stdout, expected);
 };
 
-const snapshotMacro = async (t, {args, opts}) => {
-	const {stdout} = await execa('./cli.js', args, opts);
+const snapshotMacro = async (t, {arguments: arguments_, options}) => {
+	const {stdout} = await execa('./cli.js', arguments_, options);
 	t.snapshot(stdout);
 };
 
 const templateMacro = (t, input, expected) =>
-	macro(t, {args: ['--template', input, '--no-stdin']}, expected);
+	macro(t, {arguments: ['--template', input, '--no-stdin']}, expected);
 
 test('help',
-	async (t, {args, opts}, expectedRegex) => {
-		const {stdout} = await execa('./cli.js', args, opts);
+	async (t, {arguments: arguments_, options}, expectedRegex) => {
+		const {stdout} = await execa('./cli.js', arguments_, options);
 		t.regex(stdout, expectedRegex);
 	},
-	{args: ['--help']},
+	{arguments: ['--help']},
 	/Terminal string styling done right/,
 );
 
-test('main', macro, {args: ['red', 'bold', 'unicorn', '--no-stdin']},
+test('main', macro, {arguments: ['red', 'bold', 'unicorn', '--no-stdin']},
 	chalk.red.bold('unicorn'));
-test('default to args; not stdin (#11)', macro, {args: ['red', 'bold', 'unicorn'], opts: {input: ''}},
+test('default to args; not stdin (#11)', macro, {arguments: ['red', 'bold', 'unicorn'], options: {input: ''}},
 	chalk.red.bold('unicorn'));
-test('stdin', macro, {args: ['red', 'bold', '--stdin'], opts: {input: 'unicorn'}},
+test('stdin', macro, {arguments: ['red', 'bold', '--stdin'], options: {input: 'unicorn'}},
 	chalk.red.bold('unicorn'));
-test('number', macro, {args: ['red', 'bold', '123', '--no-stdin']},
+test('number', macro, {arguments: ['red', 'bold', '123', '--no-stdin']},
 	chalk.red.bold('123'));
 
 test('template', templateMacro, '{red.bold unicorn}',
@@ -50,26 +50,26 @@ test('template escaping #2', templateMacro, '{red hey\\\\} not red',
 	chalk.red('hey\\') + ' not red');
 
 test('without -n, output has trailing newline', macro,
-	{args: ['red', 'bold', 'unicorn'], opts: {stripFinalNewline: false}},
+	{arguments: ['red', 'bold', 'unicorn'], options: {stripFinalNewline: false}},
 	chalk.red.bold('unicorn') + '\n');
 test('with -n, output has NO trailing newline', macro,
-	{args: ['-n', 'red', 'bold', 'unicorn'], opts: {stripFinalNewline: false}},
+	{arguments: ['-n', 'red', 'bold', 'unicorn'], options: {stripFinalNewline: false}},
 	chalk.red.bold('unicorn') /* No trailing newline */);
 test('with --no-newline, output has NO trailing newline', macro,
-	{args: ['--no-newline', 'red', 'bold', 'unicorn'], opts: {stripFinalNewline: false}},
+	{arguments: ['--no-newline', 'red', 'bold', 'unicorn'], options: {stripFinalNewline: false}},
 	chalk.red.bold('unicorn') /* No trailing newline */);
 
-test('demo', snapshotMacro, {args: ['--demo']});
+test('demo', snapshotMacro, {arguments: ['--demo']});
 
 test('unknown flag',
-	async (t, {args, opts}, expectedRegex) => {
+	async (t, {arguments: arguments_, options}, expectedRegex) => {
 		try {
-			await execa('./cli.js', args, opts);
+			await execa('./cli.js', arguments_, options);
 		} catch (error) {
 			t.is(error.exitCode, 2);
 			t.regex(error.toString(), expectedRegex);
 		}
 	},
-	{args: ['--this-is-not-a-supported-flag'], opts: {input: 'unicorn'}},
+	{arguments: ['--this-is-not-a-supported-flag'], options: {input: 'unicorn'}},
 	/Unknown flag/,
 );
