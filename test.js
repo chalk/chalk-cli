@@ -1,4 +1,3 @@
-// 3rd party (npm dependencies) imports
 import test from 'ava';
 import chalk from 'chalk';
 import execa from 'execa';
