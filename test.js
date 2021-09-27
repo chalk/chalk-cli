@@ -1,6 +1,3 @@
-// NodeJS imports
-import fs from 'node:fs';
-
 // 3rd party (npm dependencies) imports
 import test from 'ava';
 import chalk from 'chalk';
@@ -11,6 +8,11 @@ chalk.level = 1;
 const macro = async (t, {args, opts}, expected) => {
 	const {stdout} = await execa('./cli.js', args, opts);
 	t.is(stdout, expected);
+};
+
+const snapshotMacro = async (t, {args, opts}) => {
+	const {stdout} = await execa('./cli.js', args, opts);
+	t.snapshot(stdout);
 };
 
 const templateMacro = (t, input, expected) =>
@@ -58,5 +60,4 @@ test('with --no-newline, output has NO trailing newline', macro,
 	{args: ['--no-newline', 'red', 'bold', 'unicorn'], opts: {stripFinalNewline: false}},
 	chalk.red.bold('unicorn') /* No trailing newline */);
 
-test('demo', macro, {args: ['--demo']},
-	fs.readFileSync('demo-output.txt', {encoding: 'utf-8'}).trimEnd());
+test('demo', snapshotMacro, {args: ['--demo']});
