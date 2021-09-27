@@ -52,9 +52,12 @@ const cli = meow(`
 	  $ echo 'Unicorns from stdin' | chalk --stdin red bold
 `, {
 	importMeta: import.meta,
-	// TODO: Disabled until https://github.com/sindresorhus/meow/issues/197 is fixed.
-	// allowUnknownFlags: false,
+	allowUnknownFlags: false,
 	flags: {
+		// TODO: Can be removed when https://github.com/sindresorhus/meow/issues/197 is fixed.
+		help: {type: 'boolean'},
+		version: {type: 'boolean'},
+
 		template: {
 			type: 'string',
 			alias: 't',

@@ -60,3 +60,16 @@ test('with --no-newline, output has NO trailing newline', macro,
 	chalk.red.bold('unicorn') /* No trailing newline */);
 
 test('demo', snapshotMacro, {args: ['--demo']});
+
+test('unknown flag',
+	async (t, {args, opts}, expectedRegex) => {
+		try {
+			await execa('./cli.js', args, opts);
+		} catch (error) {
+			t.is(error.exitCode, 2);
+			t.regex(error.toString(), expectedRegex);
+		}
+	},
+	{args: ['--this-is-not-a-supported-flag'], opts: {input: 'unicorn'}},
+	/Unknown flag/,
+);
