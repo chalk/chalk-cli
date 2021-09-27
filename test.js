@@ -9,6 +9,11 @@ const macro = async (t, {args, opts}, expected) => {
 	t.is(stdout, expected);
 };
 
+const snapshotMacro = async (t, {args, opts}) => {
+	const {stdout} = await execa('./cli.js', args, opts);
+	t.snapshot(stdout);
+};
+
 const templateMacro = (t, input, expected) =>
 	macro(t, {args: ['--template', input, '--no-stdin']}, expected);
 
@@ -53,3 +58,5 @@ test('with -n, output has NO trailing newline', macro,
 test('with --no-newline, output has NO trailing newline', macro,
 	{args: ['--no-newline', 'red', 'bold', 'unicorn'], opts: {stripFinalNewline: false}},
 	chalk.red.bold('unicorn') /* No trailing newline */);
+
+test('demo', snapshotMacro, {args: ['--demo']});
