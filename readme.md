@@ -6,8 +6,8 @@
 
 ## Install
 
-```
-$ npm install --global chalk-cli
+```sh
+npm install --global chalk-cli
 ```
 
 ## Usage
