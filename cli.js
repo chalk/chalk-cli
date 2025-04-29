@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import process from 'node:process';
 import ansiStyles from 'ansi-styles';
-import chalk from 'chalk';
+import chalk, {supportsColor} from 'chalk'; // eslint-disable-line unicorn/import-style
 import chalkTemplate from 'chalk-template';
 import {getProperty} from 'dot-prop';
 import getStdin from 'get-stdin';
@@ -180,7 +180,7 @@ async function processDataFromStdin() {
 }
 
 if (cli.flags.forceColor) {
-	chalk.level = 1;
+	chalk.level = supportsColor.level;
 } else if (cli.flags.color !== undefined) {
 	chalk.level = cli.flags.color;
 }
