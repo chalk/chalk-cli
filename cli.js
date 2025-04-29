@@ -128,8 +128,8 @@ function init(data) {
 		}
 	}
 
-	const fn = getProperty(chalk, styles.join('.'));
-	process.stdout.write(fn(data.replace(/\n$/, '')));
+	const function_ = getProperty(chalk, styles.join('.'));
+	process.stdout.write(function_(data.replace(/\n$/, '')));
 
 	// The following is unfortunately a bit complex, because we're trying to
 	// support both `-n` and `--no-newline` flags and this is a little tricky
@@ -149,7 +149,7 @@ function init(data) {
 	}
 }
 
-function processDataFromArgs() {
+function processDataFromArguments() {
 	if (cli.flags.demo) {
 		printAllStyles();
 		return;
@@ -186,7 +186,7 @@ if (cli.flags.forceColor) {
 }
 
 if (process.stdin.isTTY || !cli.flags.stdin) {
-	processDataFromArgs();
+	processDataFromArguments();
 } else {
-	processDataFromStdin();
+	await processDataFromStdin();
 }

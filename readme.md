@@ -47,7 +47,7 @@ See [supported styles](https://github.com/chalk/chalk#styles).
 
 ## Related
 
-- [chalk](https://github.com/chalk/chalk) - API for this module
+- [chalk](https://github.com/chalk/chalk) - API for this package
 
 ## Maintainers
 
