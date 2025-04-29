@@ -1,6 +1,6 @@
 import test from 'ava';
 import chalk from 'chalk';
-import execa from 'execa';
+import {execa} from 'execa';
 
 chalk.level = 1;
 
