@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import process from 'node:process';
 import ansiStyles from 'ansi-styles';
-import chalk, {supportsColor} from 'chalk'; // eslint-disable-line unicorn/import-style
+import chalk from 'chalk';
 import chalkTemplate from 'chalk-template';
 import {getProperty} from 'dot-prop';
 import getStdin from 'get-stdin';
@@ -48,7 +48,6 @@ const cli = meow(`
 	  ${chalk.yellow('--no-newline, -n')}  Don't emit a newline (\`\\n\`) after the input.
 	  ${chalk.yellow('--demo')}            Demo of all Chalk styles.
 	  ${chalk.yellow('--color, -c')}       Behave as FORCE_COLOR set to given value (0, 1, 2, 3, 256, 16m).
-	  ${chalk.yellow('--force-color, -f')} Force color display.
 
 	${chalk.redBright.inverse(' Examples ')}
 
@@ -84,9 +83,8 @@ const cli = meow(`
 		},
 		color: {
 			type: 'string',
-			choices: ['0', '1', '2', '3', '256', '16m'],
 		},
-		forceColor: {
+		colors: {
 			type: 'boolean',
 		},
 		noNewline: {
@@ -177,12 +175,6 @@ async function processDataFromStdin() {
 	}
 
 	init(await getStdin());
-}
-
-if (cli.flags.forceColor) {
-	chalk.level = supportsColor.level;
-} else if (cli.flags.color !== undefined) {
-	chalk.level = cli.flags.color;
 }
 
 if (process.stdin.isTTY || !cli.flags.stdin) {
