@@ -24,8 +24,7 @@ $ chalk --help
     --stdin           Read input from stdin rather than from arguments.
     --no-newline, -n  Don't emit a newline (`\n`) after the input.
     --demo            Demo of all Chalk styles.
-    --color, -c       Behave as FORCE_COLOR set to given value (0, 1, 2, 3, 256, 16m).
-    --force-color, -f Force color display.
+    --color, -c       Force color support.
 
   Examples
     $ chalk red bold 'Unicorns & Rainbows'

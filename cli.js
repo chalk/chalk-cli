@@ -47,7 +47,7 @@ const cli = meow(`
 	  ${chalk.yellow('--stdin')}           Read input from stdin rather than from arguments.
 	  ${chalk.yellow('--no-newline, -n')}  Don't emit a newline (\`\\n\`) after the input.
 	  ${chalk.yellow('--demo')}            Demo of all Chalk styles.
-	  ${chalk.yellow('--color, -c')}       Behave as FORCE_COLOR set to given value (0, 1, 2, 3, 256, 16m).
+	  ${chalk.yellow('--color, -c')}       Force color support.
 
 	${chalk.redBright.inverse(' Examples ')}
 
@@ -82,9 +82,6 @@ const cli = meow(`
 			type: 'boolean',
 		},
 		color: {
-			type: 'string',
-		},
-		colors: {
 			type: 'boolean',
 		},
 		noNewline: {
