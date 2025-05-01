@@ -50,11 +50,12 @@
 		"template"
 	],
 	"dependencies": {
-		"ansi-styles": "^6.1.0",
-		"chalk": "^4.1.2",
-		"dot-prop": "^6.0.1",
+		"ansi-styles": "^6.2.1",
+		"chalk": "^5.4.1",
+		"chalk-template": "^1.1.0",
+		"dot-prop": "^9.0.0",
 		"get-stdin": "^9.0.0",
-		"meow": "^10.1.1"
+		"meow": "^13.2.0"
 	},
 	"devDependencies": {
 		"ava": "^3.15.0",

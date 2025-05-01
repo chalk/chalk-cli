@@ -2,7 +2,8 @@
 import process from 'node:process';
 import ansiStyles from 'ansi-styles';
 import chalk from 'chalk';
-import dotProp from 'dot-prop';
+import chalkTemplate from 'chalk-template';
+import {getProperty} from 'dot-prop';
 import getStdin from 'get-stdin';
 import meow from 'meow';
 
@@ -46,6 +47,7 @@ const cli = meow(`
 	  ${chalk.yellow('--stdin')}           Read input from stdin rather than from arguments.
 	  ${chalk.yellow('--no-newline, -n')}  Don't emit a newline (\`\\n\`) after the input.
 	  ${chalk.yellow('--demo')}            Demo of all Chalk styles.
+	  ${chalk.yellow('--color, -c')}       Force color support.
 
 	${chalk.redBright.inverse(' Examples ')}
 
@@ -56,7 +58,7 @@ const cli = meow(`
 	  ${chalk.red.bold('Unicorns & Rainbows')}
 
 	  $ chalk -t '{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}'
-	  ${chalk`{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}`}
+	  ${chalkTemplate`{red.bold Dungeons and Dragons {~bold.blue (with added fairies)}}`}
 
 	  $ echo 'Unicorns from stdin' | chalk --stdin red bold
 	  ${chalk.red.bold('Unicorns from stdin')}
@@ -74,14 +76,17 @@ const cli = meow(`
 
 		template: {
 			type: 'string',
-			alias: 't',
+			shortFlag: 't',
 		},
 		stdin: {
 			type: 'boolean',
 		},
+		color: {
+			type: 'boolean',
+		},
 		noNewline: {
 			type: 'boolean',
-			alias: 'n',
+			shortFlag: 'n',
 		},
 		demo: {
 			type: 'boolean',
@@ -101,7 +106,7 @@ function handleTemplateFlag(template) {
 	try {
 		const tagArray = [template];
 		tagArray.raw = tagArray;
-		console.log(chalk(tagArray));
+		console.log(chalkTemplate(tagArray));
 	} catch (error) {
 		console.error('Something went wrong! Maybe review your syntax?\n');
 		console.error(error.stack);
@@ -112,13 +117,13 @@ function handleTemplateFlag(template) {
 function init(data) {
 	for (const style of styles) {
 		if (!Object.keys(ansiStyles).includes(style)) {
-			console.error(chalk`{red Invalid style: {bold ${style}}}\n`);
+			console.error(chalkTemplate`{red Invalid style: {bold ${style}}}\n`);
 			printAllStyles();
 			process.exit(1);
 		}
 	}
 
-	const function_ = dotProp.get(chalk, styles.join('.'));
+	const function_ = getProperty(chalk, styles.join('.'));
 	process.stdout.write(function_(data.replace(/\n$/, '')));
 
 	// The following is unfortunately a bit complex, because we're trying to

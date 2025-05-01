@@ -61,6 +61,20 @@ test('with --no-newline, output has NO trailing newline', macro,
 
 test('demo', snapshotMacro, {arguments: ['--demo']});
 
+test('color', macro, {arguments: ['yellow', 'bold', 'unicorn', '--color']},
+	chalk.yellow.bold('unicorn'));
+
+test('color=always', macro, {arguments: ['red', 'bold', 'unicorn', '--color=always']},
+	chalk.red.bold('unicorn'));
+
+test('color=true', macro, {arguments: ['blue', 'bold', 'unicorn', '--color=true']},
+	chalk.blue.bold('unicorn'));
+
+/* This case is not testable as FORCE_COLOR is set, and takes precedence over flag
+test('no color', macro, {arguments: ['--no-color', 'red', 'bold', 'unicorn']},
+	'unicorn');
+*/
+
 test('unknown flag',
 	async (t, {arguments: arguments_, options}, expectedRegex) => {
 		try {
