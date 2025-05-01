@@ -1,6 +1,6 @@
 {
 	"name": "chalk-cli",
-	"version": "5.0.1",
+	"version": "6.0.0",
 	"description": "Terminal string styling done right",
 	"license": "MIT",
 	"repository": "github:chalk/chalk-cli",
